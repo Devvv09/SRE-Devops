@@ -1,0 +1,16 @@
+{
+    "services": [
+        {
+            "name": "Google",
+            "endpoint": "https://www.google.com/"
+        },
+        {
+            "name": "Github",
+            "endpoint": "https://github.com/"
+        },
+        {
+            "name": "Stack Overflow",
+            "endpoint": "https://stackoverflow.com/"
+        }
+    ]
+}
