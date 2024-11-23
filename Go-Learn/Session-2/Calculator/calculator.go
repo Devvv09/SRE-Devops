@@ -8,6 +8,7 @@ import (
 func main(){
 	
 	var choice,num1,num2 int
+
 	fmt.Println("1 for addition")
 	fmt.Println("2 for substraction")
 	fmt.Println("3 for multiplication")
@@ -42,15 +43,19 @@ func main(){
 func add(num1,num2 int) int {
 	return num1 + num2
 }
+
 func substract(num1,num2 int) int {
 	return num1 - num2
 }
+
 func multiplication(num1,num2 int) int {
 	return num1 * num2
 }
-func division(num1,num2 int) int {
-	return num1 / num2
+
+func division(num1,num2 int) float32 {
+	return float32(num1 / num2)
 }
+
 func pow(num1,num2 int) int {
 	return int(math.Pow(float64(num1),float64(num2)))
 }
