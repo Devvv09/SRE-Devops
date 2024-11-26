@@ -16,30 +16,21 @@ func main() {
 	fmt.Scan(&taxRate, &revenue, &expenses)
 
 	profit, err := findProfit(taxRate, revenue, expenses)
-
 	if err != nil {
 		panic(fmt.Sprintf("%v", err))
 
 	}
+	
 	strProfit := fmt.Sprintf("Profit is %v\n", profit)
 	byteData := []byte(strProfit)
-	data, err := reader(fileName)
-
-	if err != nil {
-		fmt.Println(err)
-	}
+	data := reader(fileName)
 
 	data = append(data, byteData...)
-	err = writer(fileName, []byte(data))
-	if err != nil {
-		fmt.Println("Error:", err)
-
-	}
-
+	writer(fileName, []byte(data))
+	
 }
 
 func findProfit(taxRate, revenue , expenses float64) (float64, error) {
-
 	if taxRate <= 0 || revenue <= 0 || expenses <= 0 {
 		return 0.0, errors.New("Error: values cannot be less than zero")
 	} 
@@ -49,20 +40,17 @@ func findProfit(taxRate, revenue , expenses float64) (float64, error) {
 
 }
 
-func writer(fileName string, data []byte) error {
-
-	err := os.WriteFile(fileName, data, 0700)
+func writer(fileName string, data []byte) {
+	err := os.WriteFile(fileName, data, 0644)
 	if err != nil {
-		return fmt.Errorf("Erorr: %v", err)
+		panic(fmt.Sprintf("%v", err))
 	}
-	return nil
 }
 
-func reader(fileName string) ([]byte, error) {
-
+func reader(fileName string) ([]byte) {
 	data, err := os.ReadFile(fileName)
 	if err != nil {
-		return nil, errors.New(err.Error())
+		panic(fmt.Sprintf("%v", err))
 	}
-	return data, nil
+	return data
 }
