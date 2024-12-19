@@ -32,14 +32,7 @@ func addStudents() string {
 			"sci":   sciMarks,
 		},
 	}
-	data, err := os.ReadFile(fileName)
-	if err != nil {
-		panic(err.Error())
-	}
-	err = json.Unmarshal(data, &students)
-	if err != nil {
-		panic(err.Error())
-	}
+	readFromJSON(fileName)
 	students = append(students, st)
 	marshelledData, err := json.Marshal(students)
 	if err != nil {
@@ -53,27 +46,12 @@ func addStudents() string {
 }
 
 func displayAllStudents() {
-	data, err := os.ReadFile(fileName)
-	if err != nil {
-		panic(err.Error())
-	}
-	err = json.Unmarshal(data, &students)
-	if err != nil {
-		panic(err.Error())
-	}
+	readFromJSON(fileName)
 	fmt.Println(students)
 }
 
-func displayStudent(id int) {
-	data, err := os.ReadFile(fileName)
-	if err != nil {
-		panic(err.Error())
-	}
-	err = json.Unmarshal(data, &students)
-	if err != nil {
-		panic(err.Error())
-	}
-
+func displayStudentById(id int) {
+	readFromJSON(fileName)
 	for _, val := range students {
 		if val.Id == id {
 			fmt.Println(val)
@@ -84,14 +62,7 @@ func displayStudent(id int) {
 }
 
 func updateStudent(id int, updName string) {
-	data, err := os.ReadFile(fileName)
-	if err != nil {
-		panic(err.Error())
-	}
-	err = json.Unmarshal(data, &students)
-	if err != nil {
-		panic(err.Error())
-	}
+	readFromJSON(fileName)
 	for i, val := range students {
 		if val.Id == id {
 			students[i].Name = updName
@@ -102,20 +73,12 @@ func updateStudent(id int, updName string) {
 
 func deleteStudent(id int) string {
 	newStudents := []Student{}
-	data, err := os.ReadFile(fileName)
-	if err != nil {
-		panic(err.Error())
-	}
-	err = json.Unmarshal(data, &students)
-	if err != nil {
-		panic(err.Error())
-	}
+	readFromJSON(fileName)
 	for i := 0; i < len(students); i++ {
 		if students[i].Id != id {
 			newStudents = append(newStudents, students[i])
 		}
 	}
-
 	marshelledData, err := json.Marshal(newStudents)
 	if err != nil {
 		panic(err.Error())
@@ -126,3 +89,16 @@ func deleteStudent(id int) string {
 	}
 	return "Student deleted"
 }
+
+
+func readFromJSON(fileName string){
+	data, err := os.ReadFile(fileName)
+	if err != nil {
+		panic(err.Error())
+	}
+	err = json.Unmarshal(data, &students)
+	if err != nil {
+		panic(err.Error())
+	}
+}
+

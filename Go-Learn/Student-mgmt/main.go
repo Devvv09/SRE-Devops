@@ -42,7 +42,7 @@ func main() {
 				displayAllStudents()
 			case 3:
 				inputStudent()
-				displayStudent(id)
+				displayStudentById(id)
 			case 4:
 				inputStudent()
 				var updatedName string
