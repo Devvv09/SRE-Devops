@@ -7,6 +7,10 @@ import (
 	"os"
 )
 
+const addStudentMsg = "student added!"
+const deleteStudentMsg = "student deleted!"
+const updateStudentMsg = "student updated!"
+
 var students = []Student{}
 var st Student
 
@@ -37,7 +41,7 @@ func writeToJSON(fileName string) {
 	}
 }
 
-func addStudents() string {
+func addStudents() string{
 	var name string
 	var engMarks, hindiMarks, mathsMarks, csMarks, sciMarks int
 	fmt.Println("Enter name and marks of student")
@@ -57,7 +61,7 @@ func addStudents() string {
 	readFromJSON(fileName)
 	students = append(students, st)
 	writeToJSON(fileName)
-	return "Student added"
+	return addStudentMsg
 }
 
 func displayAllStudents() {
@@ -65,25 +69,25 @@ func displayAllStudents() {
 	fmt.Println(students)
 }
 
-func displayStudentById(id int) {
+func displayStudentById(id int) *Student{
 	readFromJSON(fileName)
 	for _, val := range students {
 		if val.Id == id {
-			fmt.Println(val)
-			return
+			return &val
 		}
 	}
-	fmt.Println("No result found")
+	return nil
 }
 
-func updateStudent(id int, updName string) {
+func updateStudent(id int, updName string) string{
 	readFromJSON(fileName)
 	for i, val := range students {
 		if val.Id == id {
 			students[i].Name = updName
-			return
 		}
 	}
+	writeToJSON(fileName)
+	return updateStudentMsg
 }
 
 func deleteStudent(id int) string {
@@ -102,5 +106,5 @@ func deleteStudent(id int) string {
 	if err != nil {
 		panic(err.Error())
 	}
-	return "Student deleted"
+	return deleteStudentMsg
 }
