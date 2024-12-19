@@ -15,6 +15,28 @@ func inputStudent() {
 	fmt.Scan(&id)
 }
 
+func readFromJSON(fileName string) {
+	data, err := os.ReadFile(fileName)
+	if err != nil {
+		panic(err.Error())
+	}
+	err = json.Unmarshal(data, &students)
+	if err != nil {
+		panic(err.Error())
+	}
+}
+
+func writeToJSON(fileName string) {
+	marshelledData, err := json.Marshal(students)
+	if err != nil {
+		panic(err.Error())
+	}
+	err = os.WriteFile(fileName, marshelledData, 0644)
+	if err != nil {
+		panic(err.Error())
+	}
+}
+
 func addStudents() string {
 	var name string
 	var engMarks, hindiMarks, mathsMarks, csMarks, sciMarks int
@@ -34,14 +56,7 @@ func addStudents() string {
 	}
 	readFromJSON(fileName)
 	students = append(students, st)
-	marshelledData, err := json.Marshal(students)
-	if err != nil {
-		panic(err.Error())
-	}
-	err = os.WriteFile(fileName, marshelledData, 0644)
-	if err != nil {
-		panic(err.Error())
-	}
+	writeToJSON(fileName)
 	return "Student added"
 }
 
@@ -89,16 +104,3 @@ func deleteStudent(id int) string {
 	}
 	return "Student deleted"
 }
-
-
-func readFromJSON(fileName string){
-	data, err := os.ReadFile(fileName)
-	if err != nil {
-		panic(err.Error())
-	}
-	err = json.Unmarshal(data, &students)
-	if err != nil {
-		panic(err.Error())
-	}
-}
-
