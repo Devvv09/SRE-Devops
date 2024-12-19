@@ -4,20 +4,20 @@ import (
 	"fmt"
 )
 
+const fileName string = "student.json"
+
 type Student struct {
-	Id    uint32
-	Name  string
-	Marks map[string]int
+	Id    int 			`json:"id"`
+	Name  string	 		`json:"name"`
+	Marks map[string]int	`json:"marks"`
 }
 
-var students = []Student{}
-var choice int
-var st Student
-var id uint32
-var updatedName string
+var id int
+
 
 func main() {
 
+	var choice int
 	for {
 		if choice == 6 {
 			panic("Exiting the programe")
@@ -34,6 +34,7 @@ func main() {
 		`)
 
 		fmt.Scan(&choice)
+		
 		switch choice {
 			case 1:
 				fmt.Println(addStudents())
@@ -44,6 +45,7 @@ func main() {
 				displayStudent(id)
 			case 4:
 				inputStudent()
+				var updatedName string
 				fmt.Println("Enter updated name:")
 				fmt.Scan(&updatedName)
 				updateStudent(id, updatedName)
