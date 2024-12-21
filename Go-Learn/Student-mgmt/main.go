@@ -14,7 +14,6 @@ type Student struct {
 
 var id int
 
-
 func main() {
 
 	var choice int
@@ -37,7 +36,11 @@ func main() {
 		
 		switch choice {
 			case 1:
-				fmt.Println(addStudents())
+				var name string
+				var engMarks, hindiMarks, mathsMarks, csMarks, sciMarks int
+				fmt.Println("Enter name and marks of student")
+				fmt.Scan(&name, &engMarks, &hindiMarks, &mathsMarks, &csMarks, &sciMarks)
+				fmt.Println(addStudents(name,engMarks,hindiMarks,mathsMarks,csMarks,sciMarks))
 			case 2:
 				displayAllStudents()
 			case 3:
