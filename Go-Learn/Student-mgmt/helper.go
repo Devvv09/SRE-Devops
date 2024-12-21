@@ -10,9 +10,10 @@ import (
 const addStudentMsg = "student added!"
 const deleteStudentMsg = "student deleted!"
 const updateStudentMsg = "student updated!"
+const notFoundMsg string = "student not found!"
 
-var students = []*Student{}
-var st *Student
+var students = []Student{}
+var st Student
 
 func inputStudent() {
 	fmt.Println("Enter id:")
@@ -42,8 +43,8 @@ func writeToJSON(fileName string) {
 }
 
 func addStudents(name string,engMarks,hindiMarks,mathsMarks,csMarks,sciMarks int) string{
-	
-	st = &Student{
+
+	st = Student{
 		Id:   int(uuid.New().ID()),
 		Name: name,
 		Marks: map[string]int{
@@ -62,20 +63,18 @@ func addStudents(name string,engMarks,hindiMarks,mathsMarks,csMarks,sciMarks int
 
 func displayAllStudents() {
     readFromJSON(fileName)
-    for _, student := range students {
-        fmt.Printf("Name: %s, ID: %d, Marks: %+v\n", student.Name, student.Id, student.Marks)
-    }
+    fmt.Println(students)
 }
 
 
-func displayStudentById(id int) *Student{
+func displayStudentById(id int) string{
 	readFromJSON(fileName)
 	for _, val := range students {
 		if val.Id == id {
-			return val
+			fmt.Println(val)
 		}
 	}
-	return nil
+	return notFoundMsg
 }
 
 func updateStudent(id int, updName string) string{
@@ -94,7 +93,7 @@ func deleteStudent(id int) string {
 	readFromJSON(fileName)
 	for i := 0; i < len(students); i++ {
 		if students[i].Id != id {
-			newStudents = append(newStudents, *students[i])
+			newStudents = append(newStudents, students[i])
 		}
 	}
 	marshelledData, err := json.Marshal(newStudents)
