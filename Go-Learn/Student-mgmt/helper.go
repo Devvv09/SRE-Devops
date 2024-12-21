@@ -67,14 +67,15 @@ func displayAllStudents() {
 }
 
 
-func displayStudentById(id int) string{
+func displayStudentById(id int){
 	readFromJSON(fileName)
 	for _, val := range students {
 		if val.Id == id {
 			fmt.Println(val)
+			return 
 		}
 	}
-	return notFoundMsg
+	fmt.Println(notFoundMsg)
 }
 
 func updateStudent(id int, updName string) string{
