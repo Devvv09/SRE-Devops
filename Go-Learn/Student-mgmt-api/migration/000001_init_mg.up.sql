@@ -1,8 +1,0 @@
-CREATE TABLE student (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    age INT NOT NULL,
-    grade VARCHAR(10) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-

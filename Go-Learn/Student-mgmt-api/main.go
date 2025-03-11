@@ -8,7 +8,8 @@ import (
 func main() {
 
 	config.ConnectDB()
+	//go channels
+	//Graceful shutdown
 	r := routes.Routes()
 	r.Run()
-
 }
