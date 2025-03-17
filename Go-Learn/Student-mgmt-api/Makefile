@@ -22,3 +22,5 @@ migration_up:
 migration_down:
 	migrate -path ./migration/ -database "postgresql://$(DB_USER):$(DB_PASSWORD)@localhost:5432/$(DB_NAME)?sslmode=disable" -verbose down
 	
+buid_image:
+	sudo docker build -t my-app .

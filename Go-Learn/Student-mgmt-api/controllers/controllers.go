@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"students-mgmt-api/config"
 	"students-mgmt-api/models"
-
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -17,7 +16,7 @@ func GetAllStudents(c *gin.Context) {
 	// Fetch students using GORM
 	if err := config.DB.Find(&students).Error; err != nil {
 		log.Printf("Error fetching students: %v", err)
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch students"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
 
@@ -60,6 +59,12 @@ func GetStudent(c *gin.Context) {
 
 	c.IndentedJSON(http.StatusOK, student)
 }
+
+
+// PmQE4mzaZq312FaX
+
+
+
 
 // UpdateStudent updates a student's details
 func UpdateStudent(c *gin.Context) {
