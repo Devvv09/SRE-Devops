@@ -9,5 +9,5 @@ func main() {
 
 	config.ConnectDB()	
 	r := routes.Routes()
-	r.Run(":3001")
+	r.Run(":3000")
 }

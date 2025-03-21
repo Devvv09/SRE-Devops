@@ -24,3 +24,8 @@ migration_down:
 	
 buid_image:
 	sudo docker build -t my-app .
+
+buid_containers:
+	sudo docker compose up --build
+
+

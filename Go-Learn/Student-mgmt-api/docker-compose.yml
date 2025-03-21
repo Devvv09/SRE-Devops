@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: student_db
+    ports:
+      - "5434:5432"
+    networks:
+      - mynetwork
+
+  api:
+    build: .
+    container_name: go_api
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "postgres://postgres:root@db:5432/student_db?sslmode=disable"
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+    external: true
