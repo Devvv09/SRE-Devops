@@ -3,8 +3,8 @@ package controllers
 import (
 	"log"
 	"net/http"
-	"students-mgmt-api/config"
-	"students-mgmt-api/models"
+	"students-mgmt-api/src/config"
+	"students-mgmt-api/src/models"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -59,10 +59,6 @@ func GetStudent(c *gin.Context) {
 
 	c.IndentedJSON(http.StatusOK, student)
 }
-
-
-// PmQE4mzaZq312FaX
-
 
 
 

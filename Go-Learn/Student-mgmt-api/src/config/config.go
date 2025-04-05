@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 	"log"
-	"students-mgmt-api/models"
+	"students-mgmt-api/src/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

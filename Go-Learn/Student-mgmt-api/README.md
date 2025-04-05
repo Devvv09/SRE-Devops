@@ -1,4 +1,3 @@
-
 Overview
 
     Student Management REST API is a backend service built with Go (Golang) to manage student records. It provides endpoints to perform CRUD (Create, Read, Update, Delete) operations on student data and is designed to be lightweight, scalable, and easy to use.
@@ -65,7 +64,6 @@ Steps
 
         go run main.go
 
-    
 Folder Structure
 
 student-mgt-api/

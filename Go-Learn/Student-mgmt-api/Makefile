@@ -1,5 +1,5 @@
 SHELL := /bin/zsh
-include ./config/app.env
+include ./src/config/app.env
 
 run: 
 	go run *.go
@@ -26,6 +26,6 @@ buid_image:
 	sudo docker build -t my-app .
 
 buid_containers:
-	sudo docker compose up --build
+	sudo docker compose up
 
 

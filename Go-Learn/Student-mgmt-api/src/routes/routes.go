@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"students-mgmt-api/controllers"
+	"students-mgmt-api/src/controllers"
 	"github.com/gin-gonic/gin"
 )
 

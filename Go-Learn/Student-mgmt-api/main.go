@@ -1,8 +1,8 @@
 package main
 
 import (
-	"students-mgmt-api/config"
-	"students-mgmt-api/routes"
+	"students-mgmt-api/src/config"
+	"students-mgmt-api/src/routes"
 )
 
 func main() {
